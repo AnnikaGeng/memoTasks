@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  font-family: 'Mukta', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+button:hover {
+  background-color: inherit;
+  color: inherit;
+  border-color: inherit;
+  /* any other styles you want to override */
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+.tooltip-btn {
+  position: relative;
+}
+
+/* button black */
+.tooltip-btn:hover::before,
+.tooltip-btn:focus::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  padding: 0.3rem;
+  background-color: #fef6e4;
+  color: #001858;
+  border-radius: 0.25rem;
+  border-color: #001858;
+  border-width: 0.1rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  font-family: monospace;
+  font-weight: 500;
+}
+
+.tooltip-btn:hover::after,
+.tooltip-btn:focus::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  border-width: 0.5rem;
+  border-style: solid;
+  border-color: transparent transparent #fef6e4 transparent;
+}
+
+/* button-blue */
+.tooltip-btn2:hover::before,
+.tooltip-btn2:focus::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  padding: 0.3rem;
+  background-color: #fef6e4;
+  color: #8bd3dd;
+  border-radius: 0.25rem;
+  border-color: #8bd3dd;
+  border-width: 0.1rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  font-family: monospace;
+  font-weight: 500;
+}
+
+.tooltip-btn2:hover::after,
+.tooltip-btn2:focus::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  border-width: 0.5rem;
+  border-style: solid;
+  border-color: transparent transparent #fef6e4 transparent;
+}
+
+/* button red */
+.tooltip-btn3:hover::before,
+.tooltip-btn3:focus::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  padding: 0.3rem;
+  background-color: #fef6e4;
+  color: #f582ae;
+  border-radius: 0.25rem;
+  border-color: #f582ae;
+  border-width: 0.1rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  font-family: monospace;
+  font-weight: 500;
+}
+
+.tooltip-btn:hover::after,
+.tooltip-btn:focus::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  border-width: 0.5rem;
+  border-style: solid;
+  border-color: transparent transparent #fef6e4 transparent;
+}
+
+.task-card:hover > .btn-group {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
