@@ -7,6 +7,7 @@ import TaskForm from "./TaskForm";
 import React from 'react';
 import { loader } from "../assets";
 import { coffee } from "../assets";
+import { NavLink } from "react-router-dom";
 
 // http://localhost:5000/api/tasks
 
@@ -24,6 +25,24 @@ const TaskList = () => {
   });
 //   keep updating the variable and we can also use it
   const { name } = formData;
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    // add event listener to the screen size
+    const mediaQuery = window.matchMedia('(max-width: 680px)');
+    // set the initial state
+    setIsMobile(mediaQuery.matches);
+    // define the event handler
+    const handleMediaQueryChange = (e) => {
+      setIsMobile(e.matches);
+    }
+    // add the event listener for changes to the media query
+    mediaQuery.addEventListener('change', handleMediaQueryChange);
+    // remove the event listener when the component unmounts
+    return () => {
+      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -115,8 +134,9 @@ const TaskList = () => {
     }
   };
 
+
   return (
-    <div className="flex flex-row h-full">
+    <div className="flex flex-col sm:flex-row h-full">
       <TaskForm
         name={name}
         handleInputChange={handleInputChange}
@@ -127,7 +147,7 @@ const TaskList = () => {
         completedTasks={completedTasks}
         totalNum={totalNum}
       />
-      <div className='flex flex-col w-2/3 overflow-y-auto items-center mt-24 mb-10'>
+      <div className='flex flex-col w-full sm:w-2/3 overflow-y-auto items-center mt-24 sm:mb-10 mb-20'>
         {isLoading && (
             <div className="flex flex-col justify-center h-full">
             <img src={loader} alt="Loading" />
@@ -135,8 +155,8 @@ const TaskList = () => {
             </div>
         )}
         {!isLoading && tasks.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full gap-10">
-                <p className="flex justify-center font-mono text-paragraph text-2xl">No task added. Please add a task</p>
+            <div className="flex flex-col items-center justify-center h-full gap-10 mt-24 sm:mt-0">
+                <p className="flex justify-center font-mono text-paragraph text-sm sm:text-2xl">No task added. Please add a task</p>
                 <img src={coffee} className="flex w-[200px]" />
             </div>
         ) : (
@@ -151,6 +171,7 @@ const TaskList = () => {
                         getSingleTask={getSingleTask}
                         setToComplete={setToComplete}
                         isEditing={isEditing}
+                        isMobile={isMobile}
                     />
                     );
                 })} 
@@ -158,6 +179,13 @@ const TaskList = () => {
        )} 
 
       </div>
+      <NavLink to='/add'
+      className=' flex sm:hidden
+       bg-button text-white font-bold py-2 px-4 rounded-md w-4/5 right-1/2 translate-x-1/2 bottom-4 fixed items-center justify-center
+      hover:bg-tertiary '
+      >
+      add
+      </NavLink>
       
 
     </div>
